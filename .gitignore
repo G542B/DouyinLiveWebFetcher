@@ -1,0 +1,49 @@
+# 依赖与构建产物
+node_modules/
+__pycache__/
+dist/
+dist_build/
+out/
+build/
+package-lock.json
+
+# Python 嵌入式环境
+python/
+python-embed.zip
+wheels/
+
+# Playwright 浏览器
+playwright-browsers/
+
+# AI 模型权重（用户自行下载）
+backend/models/
+
+# IDE
+.idea/
+.vscode/
+.trae/
+.venv/
+
+# 系统文件
+.DS_Store
+*.pyc
+Thumbs.db
+
+# 数据库临时文件
+data/game/*.bak
+data/game/*.db-shm
+data/game/*.db-wal
+
+# 临时目录
+electron/_tmp_del_/
+
+# 二进制工具
+protobuf/protoc.exe
+
+# 测试文件
+backend/tests/
+**/test_*.py
+**/*.test.js
+**/*.spec.js
+**/*.test.ts
+**/*.spec.ts

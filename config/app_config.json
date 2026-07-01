@@ -1,0 +1,111 @@
+{
+  "filter_config": {
+    "enabled_types": [
+      "WebcastChatMessage"
+    ],
+    "keyword_filter": {
+      "enabled": false,
+      "mode": "blacklist",
+      "keywords": [],
+      "exact_match": false,
+      "case_sensitive": false
+    },
+    "regex_filter": {
+      "enabled": false,
+      "patterns": []
+    },
+    "user_level_filter": {
+      "enabled": false,
+      "min_level": null,
+      "max_level": null,
+      "allowed_users": []
+    },
+    "emoji_filter": {
+      "enabled": false,
+      "strategy": "full",
+      "filter_image_emoji": true,
+      "filter_text_emoji": true,
+      "filter_emoji_chat": true
+    },
+    "emoticon_filter": {
+      "enabled": true,
+      "match_all": true,
+      "patterns": [
+        "[看]",
+        "[捂脸]",
+        "[暗中观察]",
+        "[呲牙]",
+        "[尬笑]",
+        "[okk]",
+        "[OK]",
+        "[点赞]",
+        "[鼓掌]",
+        "[偷笑]",
+        "[奸笑]",
+        "[阴险]",
+        "[大哭]",
+        "[生气]",
+        "[流汗]",
+        "[疑问]",
+        "[调皮]",
+        "[抠鼻]",
+        "[鄙视]",
+        "[吐]",
+        "[害羞]",
+        "[囧]",
+        "[惊讶]",
+        "[得意]",
+        "[白眼]",
+        "[尴尬]",
+        "[无语]",
+        "[抓狂]",
+        "[崩溃]",
+        "[笑脸]",
+        "[笑哭]",
+        "[爱心]",
+        "[心碎]",
+        "[玫瑰]",
+        "[咖啡]"
+      ]
+    },
+    "special_symbol_filter": {
+      "enabled": true,
+      "symbols": [
+        "@"
+      ],
+      "match_type": "any"
+    },
+    "mention_filter": {
+      "enabled": true,
+      "strategy": "full"
+    },
+    "question_filter": {
+      "enabled": false,
+      "question_markers": [],
+      "match_type": "any"
+    }
+  },
+  "output_config": {
+    "output_mode": "browser",
+    "target_url": "https://jzxhycdn.jzxgame.com/_jzx/wyzgs/web/index.html",
+    "textarea_selector": "#EditBoxId_1",
+    "button_selector": "div:nth-of-type(1) > div > div:nth-of-type(4) > div:nth-of-type(1) > button > span",
+    "textarea_selectors": [
+      "#EditBoxId_1",
+      "input[type=\"text\"]",
+      "div:nth-of-type(1) > div > input.cocosEditBox",
+      "div:nth-of-type(1) > div > input"
+    ],
+    "button_selectors": [],
+    "browser_headless": false,
+    "file_output_path": "",
+    "file_append_mode": true,
+    "send_mode": "sequential",
+    "send_interval": 2.0,
+    "auto_click_button": false,
+    "auto_press_enter": true,
+    "add_newline": true,
+    "include_username": false,
+    "include_timestamp": false
+  }
+}

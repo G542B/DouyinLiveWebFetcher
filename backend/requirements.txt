@@ -1,0 +1,11 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.10.0
+python-multipart>=0.0.9
+psutil>=5.9.0
+
+# Embedding 模型依赖（猜词游戏关联度算法）
+numpy>=1.24.0
+sentence-transformers>=2.7.0
+torch>=2.0.0
+huggingface-hub>=0.20.0

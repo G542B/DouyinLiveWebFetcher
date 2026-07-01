@@ -1,0 +1,13 @@
+{
+  "name": "douyin-live-danmaku",
+  "version": "1.0.0",
+  "description": "抖音网页版弹幕抓取工具",
+  "scripts": {
+    "app:install": "cd electron && npm install",
+    "app:start": "cd electron && npm start",
+    "app:build:win": "cd electron && npm run build:win"
+  },
+  "keywords": ["douyin", "danmaku", "live"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,101 @@
+{
+    "name":  "douyin-live-danmaku",
+    "version":  "1.0.0",
+    "description":  "抖音网页版弹幕抓取工具 - 桌面版",
+    "main":  "main.js",
+    "author":  "",
+    "license":  "MIT",
+    "scripts":  {
+                    "start":  "electron .",
+                    "build":  "electron-builder",
+                    "build:win":  "electron-builder --win --config.directories.output=dist_build",
+                    "build:win:new":  "electron-builder --win --config.directories.output=dist_build_new",
+                    "build:mac":  "electron-builder --mac"
+                },
+    "devDependencies":  {
+                            "electron":  "^28.0.0",
+                            "electron-builder":  "^24.9.1"
+                        },
+    "build":  {
+                  "appId":  "com.douyin.live.danmaku",
+                  "productName":  "抖音弹幕抓取工具",
+                  "directories":  {
+                                      "output":  "dist"
+                                  },
+                  "asar":  true,
+                  "files":  [
+                                "main.js",
+                                "preload.js",
+                                "progress.html",
+                                "assets/**/*"
+                            ],
+                  "extraResources":  [
+                                         {
+                                             "from":  "../python",
+                                             "to":  "python",
+                                             "filter":  [
+                                                            "**/*",
+                                                            "!**/__pycache__/**",
+                                                            "!**/*.pyc"
+                                                        ]
+                                         },
+                                         {
+                                             "from":  "../wheels",
+                                             "to":  "wheels",
+                                             "filter":  [
+                                                            "**/*.whl"
+                                                        ]
+                                         },
+                                         {
+                                             "from":  "../",
+                                             "to":  "app",
+                                             "filter":  [
+                                                            "*.py",
+                                                            "requirements.txt",
+                                                            "backend/**",
+                                                            "protobuf/**",
+                                                            "*.js",
+                                                            "config/**",
+                                                            "frontend/dist/**",
+                                                            "!electron/**",
+                                                            "!dist/**",
+                                                            "!frontend/node_modules/**",
+                                                            "!frontend/src/**",
+                                                            "!**/__pycache__/**",
+                                                            "!**/*.pyc"
+                                                        ]
+                                         }
+                                     ],
+                  "win":  {
+                              "target":  "nsis",
+                              "icon":  "assets/icon.ico"
+                          },
+                  "nsis":  {
+                               "oneClick":  false,
+                               "allowToChangeInstallationDirectory":  true,
+                               "createDesktopShortcut":  true,
+                               "createStartMenuShortcut":  true,
+                               "include":  "installer.nsh"
+                           },
+                  "mac":  {
+                              "target":  "dmg",
+                              "icon":  "assets/icon.icns",
+                              "category":  "public.app-category.utilities"
+                          },
+                  "dmg":  {
+                              "contents":  [
+                                               {
+                                                   "x":  130,
+                                                   "y":  220
+                                               },
+                                               {
+                                                   "x":  410,
+                                                   "y":  220,
+                                                   "type":  "link",
+                                                   "path":  "/Applications"
+                                               }
+                                           ]
+                          },
+                  "publish":  null
+              }
+}
