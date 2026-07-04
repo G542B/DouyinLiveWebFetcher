@@ -466,16 +466,6 @@ protoc --python_out=. protobuf/douyin.proto
 
 ---
 
-## 📌 TRAE 实践证明
-
-本项目基于 TRAE IDE 完成开发，关键任务 Session ID：
-
-- `.3819066211711267:ef6673432a5e9d54975f620b933edf6f_6a31522fb7d50a438037d7b6`
-- `.3819066211711267:83076123114b182658cf2b1a86fe0151_6a2a9caca09c6c0efdf8a1a9`
-- `.3819066211711267:cf5302a98ffaed00f1e111a8405c526e_6a2a788f5869b88987938a1b`
-- `.3819066211711267:412419e687c15a9fac29c300801cda02_6a2a6c1e5869b889879384e4`
-
----
 
 ## 🔮 未来规划
 
@@ -484,9 +474,3 @@ protoc --python_out=. protobuf/douyin.proto
 - [ ] 主播助手功能（自动回复、关键信息提取）
 - [ ] AI 生成词库（根据直播内容自动生成猜词题目）
 - [ ] 看图猜词等更多弹幕互动游戏
-
----
-
-## 📄 License
-
-MIT License - 详见 [LICENSE](./LICENSE)
