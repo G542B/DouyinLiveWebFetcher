@@ -451,12 +451,20 @@ function startBackend(pythonCmd) {
       env.PYTHONPATH = sitePackages;
       env.PATH = pythonDir + ';' + (env.PATH || '');
 
-      // 设置 Playwright 浏览器路径为用户本地缓存目录
-      // 首次运行时 Playwright 会自动下载浏览器到这里
+      // 优先使用打包内嵌的 Playwright 浏览器；若不存在则回退到用户本地缓存目录
+      // 首次运行时若内嵌缺失，Playwright 会自动下载到本地缓存目录
       const localAppData = process.env.LOCALAPPDATA || path.join(process.env.USERPROFILE || '', 'AppData', 'Local');
-      const playwrightBrowsersPath = path.join(localAppData, 'ms-playwright');
+      const embeddedBrowsersPath = path.join(process.resourcesPath, 'playwright-browsers');
+      const fallbackBrowsersPath = path.join(localAppData, 'ms-playwright');
+      let playwrightBrowsersPath;
+      if (fs.existsSync(embeddedBrowsersPath)) {
+        playwrightBrowsersPath = embeddedBrowsersPath;
+        sendLog(`使用内嵌 Playwright 浏览器: ${playwrightBrowsersPath}`, 'success');
+      } else {
+        playwrightBrowsersPath = fallbackBrowsersPath;
+        sendLog(`内嵌浏览器缺失，回退到本地缓存目录: ${playwrightBrowsersPath}`, 'warn');
+      }
       env.PLAYWRIGHT_BROWSERS_PATH = playwrightBrowsersPath;
-      sendLog(`Playwright 浏览器目录: ${playwrightBrowsersPath}`);
 
       // 透传 HTTP 代理设置（如果有）
       if (process.env.HTTP_PROXY) env.HTTP_PROXY = process.env.HTTP_PROXY;

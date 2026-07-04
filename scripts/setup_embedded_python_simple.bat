@@ -1,14 +1,16 @@
 @echo off
 setlocal
 
+set "AUTO_MODE=0"
+if /i "%~1"=="/auto" set "AUTO_MODE=1"
+
 set "PYTHON_VERSION=3.11.9"
 set "PYTHON_EMBED_URL=https://repo.huaweicloud.com/python/%PYTHON_VERSION%/python-%PYTHON_VERSION%-embed-amd64.zip"
 set "GET_PIP_URL=https://raw.githubusercontent.com/pypa/get-pip/main/public/get-pip.py"
 set "PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple"
 set "PIP_TRUSTED_HOST=pypi.tuna.tsinghua.edu.cn"
 
-set "PROJECT_DIR=E:\LQ\dyproject"
-if not exist "%PROJECT_DIR%" set "PROJECT_DIR=%~dp0.."
+set "PROJECT_DIR=%~dp0.."
 set "PYTHON_DIR=%PROJECT_DIR%\python"
 set "ZIP_FILE=%PROJECT_DIR%\python-embed.zip"
 
@@ -99,7 +101,7 @@ if not exist "%PROJECT_DIR%\requirements.txt" (
 "%PYTHON_DIR%\python.exe" -m pip install -r "%PROJECT_DIR%\requirements.txt" --no-warn-script-location -i "%PIP_INDEX_URL%" --trusted-host "%PIP_TRUSTED_HOST%"
 if errorlevel 1 (
     echo [ERROR] Python dependencies install failed!
-    pause
+    if "%AUTO_MODE%"=="0" pause
     exit /b 1
 )
 
@@ -127,4 +129,5 @@ echo   "%PYTHON_DIR%\python.exe" -m playwright install chromium
 echo.
 
 if exist "%ZIP_FILE%" del /f /q "%ZIP_FILE%" 2>nul
-pause
+if "%AUTO_MODE%"=="0" pause
+exit /b 0

@@ -36,7 +36,9 @@
                                              "filter":  [
                                                             "**/*",
                                                             "!**/__pycache__/**",
-                                                            "!**/*.pyc"
+                                                            "!**/*.pyc",
+                                                            "!**/get-pip.py",
+                                                            "!**/python-embed.zip"
                                                         ]
                                          },
                                          {
@@ -44,6 +46,22 @@
                                              "to":  "wheels",
                                              "filter":  [
                                                             "**/*.whl"
+                                                        ]
+                                         },
+                                         {
+                                             "from":  "../backend/models",
+                                             "to":  "app/backend/models",
+                                             "filter":  [
+                                                            "**/*",
+                                                            "!**/.cache/**",
+                                                            "!**/__pycache__/**"
+                                                        ]
+                                         },
+                                         {
+                                             "from":  "../playwright-browsers",
+                                             "to":  "playwright-browsers",
+                                             "filter":  [
+                                                            "**/*"
                                                         ]
                                          },
                                          {
@@ -62,7 +80,8 @@
                                                             "!frontend/node_modules/**",
                                                             "!frontend/src/**",
                                                             "!**/__pycache__/**",
-                                                            "!**/*.pyc"
+                                                            "!**/*.pyc",
+                                                            "!backend/models/**"
                                                         ]
                                          }
                                      ],

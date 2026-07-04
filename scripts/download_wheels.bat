@@ -8,7 +8,12 @@ REM   for offline install in packaged app
 REM
 REM   IMPORTANT: Wheels must be compatible with
 REM   the embedded Python 3.11, NOT the system Python.
+REM
+REM   Usage: download_wheels.bat [/auto]
 REM ============================================
+
+set "AUTO_MODE=0"
+if /i "%~1"=="/auto" set "AUTO_MODE=1"
 
 set "WHEELS_DIR=%~dp0..\wheels"
 set "PYTHON_EXE="
@@ -21,7 +26,7 @@ if not errorlevel 1 (
 
 if "!PYTHON_EXE!"=="" (
     echo ERROR: Python not found. Please install Python first.
-    pause
+    if "%AUTO_MODE%"=="0" pause
     exit /b 1
 )
 
@@ -47,7 +52,7 @@ set "REQ_FILE=%~dp0..\backend\requirements.txt"
 
 if not exist "!REQ_FILE!" (
     echo ERROR: backend/requirements.txt not found at !REQ_FILE!
-    pause
+    if "%AUTO_MODE%"=="0" pause
     exit /b 1
 )
 
@@ -88,4 +93,5 @@ echo.
 echo Verify: all .whl files should contain cp311 in filename.
 echo If you see cp314 or other versions, they are incompatible!
 echo.
-pause
+if "%AUTO_MODE%"=="0" pause
+exit /b 0

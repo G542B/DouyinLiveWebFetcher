@@ -175,59 +175,115 @@
 
 ## 🚀 快速开始
 
-### 环境要求
+本项目提供两种使用方式：
 
-- Python 3.7+
+### 方式一：开发者运行（Web 模式）
+
+适合希望直接运行源码的开发者，需要预装 Python 和 Node.js。
+
+#### 环境要求
+
+- Python 3.10+（推荐 3.11）
 - Node.js 18+
-- npm 或 pnpm
+- npm
 
-### 1. 克隆仓库
+#### 一键启动（Windows）
 
 ```bash
+# 1. 克隆仓库
 git clone https://github.com/G542B/DouyinLiveWebFetcher.git
 cd DouyinLiveWebFetcher
+
+# 2. 双击运行 start.bat（自动安装所有依赖并启动）
+start.bat
 ```
 
-### 2. 下载 AI 模型（必需）
+`start.bat` 会自动完成以下操作：
+1. 安装 Python 依赖（`requirements.txt` + `backend/requirements.txt`）
+2. 安装前端依赖并构建（`npm install` + `npm run build`）
+3. 停止旧的 8000 端口服务
+4. 启动后端服务，访问 http://localhost:8000
 
-语义过滤与猜词游戏依赖 `bge-small-zh-v1.5` Embedding 模型。请从 HuggingFace 下载并放置到指定目录：
-
-```bash
-pip install huggingface_hub
-huggingface-cli download BAAI/bge-small-zh-v1.5 --local-dir backend/models/bge-small-zh-v1.5
-```
-
-或手动下载所有文件到 `backend/models/bge-small-zh-v1.5/`
-
-### 3. 安装 Python 依赖
+#### 手动逐步启动
 
 ```bash
+# 1. 安装 Python 依赖
 pip install -r requirements.txt
 pip install -r backend/requirements.txt
-```
 
-### 4. 启动 Web 应用
+# 2. 下载 AI 模型（必需，用于语义过滤与猜词游戏）
+pip install huggingface_hub
+huggingface-cli download BAAI/bge-small-zh-v1.5 --local-dir backend/models/bge-small-zh-v1.5
 
-```bash
-python run.py
-# 或
-StartWeb.bat
+# 3. 构建前端
+cd frontend
+npm install
+npm run build
+cd ..
+
+# 4. 启动 Web 服务
+python run.py --serve
 ```
 
 浏览器访问 http://localhost:8000
 
-### 5. 启动桌面应用（可选）
+#### 开发模式（前后端分离热重载）
 
 ```bash
-npm run app:install
-npm run app:start
+python run.py --dev
+# 前端: http://localhost:5173
+# 后端: http://localhost:8000
 ```
 
-### 6. 打包桌面应用
+### 方式二：打包成桌面安装包（推荐给最终用户）
+
+适合分发给非技术用户，打包成自包含的 Windows 安装包（包含内嵌 Python、所有依赖、AI 模型、Playwright 浏览器）。
+
+#### 环境要求（仅打包时需要）
+
+- Python 3.10+（用于运行打包脚本）
+- Node.js 18+
+
+#### 一键打包
 
 ```bash
-npm run app:build:win   # Windows
-npm run app:build:mac   # macOS
+# 双击运行打包脚本
+build_release.bat
+```
+
+`build_release.bat` 会自动完成以下操作：
+1. 检查环境（Node.js / Python）
+2. 下载并配置内嵌 Python 3.11.9（无需用户预装）
+3. 下载所有 Python 依赖的离线 wheel 包
+4. 下载 BGE-small-zh-v1.5 AI 模型
+5. 下载 Playwright Chromium 浏览器
+6. 构建前端（Vite 生产模式）
+7. 安装 Electron 依赖
+8. 调用 electron-builder 打包成 NSIS 安装包
+
+打包完成后，安装包位于 `electron/dist_build/` 目录下，是一个 `.exe` 文件。
+
+最终用户只需：
+1. 双击 `.exe` 安装包
+2. 按照安装向导完成安装
+3. 从开始菜单或桌面快捷方式启动应用
+
+**安装后无需联网**，所有运行时依赖（Python、依赖库、模型、浏览器）都已内嵌。
+
+#### 非交互式打包（用于 CI/CD）
+
+```bash
+build_release.bat /auto
+```
+
+### 方式三：开发模式启动桌面应用
+
+```bash
+# 安装 Electron 依赖
+npm run app:install
+
+# 开发模式启动
+npm run app:start
 ```
 
 ---

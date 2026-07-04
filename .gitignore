@@ -23,11 +23,17 @@ backend/models/
 .vscode/
 .trae/
 .venv/
+.codebase-memory/
+.ruff_cache/
+.pytest_cache/
 
 # 系统文件
 .DS_Store
 *.pyc
 Thumbs.db
+
+# 临时压缩包
+*.zip
 
 # 数据库临时文件
 data/game/*.bak

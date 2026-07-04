@@ -9,11 +9,8 @@ set "GET_PIP_URL_MIRROR=https://raw.githubusercontent.com/pypa/get-pip/main/publ
 set "PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple"
 set "PIP_TRUSTED_HOST=pypi.tuna.tsinghua.edu.cn"
 
-REM Use junction path to avoid Chinese character encoding issues
-set "PROJECT_DIR=E:\LQ\dyproject"
-if not exist "%PROJECT_DIR%" (
-    set "PROJECT_DIR=%~dp0.."
-)
+REM Use script location to robustly resolve project root (avoid hardcoded path)
+set "PROJECT_DIR=%~dp0.."
 set "PYTHON_DIR=%PROJECT_DIR%\python"
 set "ZIP_FILE=%PROJECT_DIR%\python-embed.zip"
 
