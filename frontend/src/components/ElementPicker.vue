@@ -218,7 +218,7 @@ defineExpose({
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  color: #606266;
+  color: var(--color-text-secondary);
   font-weight: 500;
 }
 
@@ -239,7 +239,7 @@ defineExpose({
 }
 
 .picked-text {
-  color: #909399;
+  color: var(--color-text-tertiary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -247,7 +247,7 @@ defineExpose({
 }
 
 .picked-attr {
-  color: #409eff;
+  color: var(--color-brand);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -259,5 +259,13 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.picker-section {
+  transition: opacity var(--transition-fast);
+}
+
+.picker-section:hover {
+  opacity: 0.85;
 }
 </style>

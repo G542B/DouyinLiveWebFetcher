@@ -709,8 +709,9 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 .header-tags {
@@ -725,10 +726,10 @@ onUnmounted(() => {
 .section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #303133;
+  color: var(--color-text-primary);
   margin-bottom: 12px;
   padding-left: 8px;
-  border-left: 3px solid #409eff;
+  border-left: 3px solid var(--color-brand);
 }
 
 .url-row {
@@ -742,7 +743,7 @@ onUnmounted(() => {
 
 .status-message {
   font-size: 12px;
-  color: #67c23a;
+  color: var(--color-success);
   margin-top: 4px;
 }
 
@@ -751,12 +752,12 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #409eff;
+  color: var(--color-brand);
   margin-top: 6px;
   padding: 6px 10px;
-  background: #ecf5ff;
-  border-radius: 4px;
-  border-left: 3px solid #409eff;
+  background: var(--color-brand-light);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-brand);
 }
 
 .progress-hint .rotating {
@@ -788,9 +789,9 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   padding: 12px;
-  background: #fef0f0;
-  border-radius: 4px;
-  color: #f56c6c;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+  color: var(--color-danger);
   font-size: 13px;
   margin: 16px 0;
 }
@@ -802,52 +803,57 @@ onUnmounted(() => {
 .logs-title {
   font-size: 13px;
   font-weight: 600;
-  color: #606266;
+  color: var(--color-text-secondary);
   margin-bottom: 8px;
 }
 
 .logs-container {
   max-height: 200px;
   overflow-y: auto;
-  background: #f5f7fa;
-  border-radius: 4px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
   padding: 12px;
 }
 
 .log-item {
   padding: 6px 10px;
   margin-bottom: 4px;
-  background: white;
-  border-radius: 4px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-sm);
   font-size: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  transition: background var(--transition-fast);
+}
+
+.log-item:hover {
+  background: var(--color-bg-tertiary);
 }
 
 .log-item.error {
-  background: #fef0f0;
-  border-left: 2px solid #f56c6c;
+  background: var(--color-bg-tertiary);
+  border-left: 2px solid var(--color-danger);
 }
 
 .log-time {
-  color: #909399;
+  color: var(--color-text-tertiary);
   flex-shrink: 0;
 }
 
 .log-content {
-  color: #303133;
+  color: var(--color-text-primary);
   flex: 1;
 }
 
 .log-error {
-  color: #f56c6c;
+  color: var(--color-danger);
 }
 
 .empty-logs {
   text-align: center;
-  color: #909399;
-  padding: 20px;
+  color: var(--color-text-tertiary);
+  padding: 48px 20px;
   font-size: 12px;
 }
 
@@ -859,7 +865,7 @@ onUnmounted(() => {
 
 .viewport-label {
   font-size: 12px;
-  color: #606266;
+  color: var(--color-text-secondary);
 }
 
 .viewport-row {
@@ -869,13 +875,13 @@ onUnmounted(() => {
 }
 
 .viewport-x {
-  color: #909399;
+  color: var(--color-text-tertiary);
   font-size: 14px;
 }
 
 .disconnect-banner {
-  background: #fdf6ec;
-  color: #e6a23c;
-  border-left: 3px solid #e6a23c;
+  background: var(--color-bg-tertiary);
+  color: var(--color-warning);
+  border-left: 3px solid var(--color-warning);
 }
 </style>

@@ -22,13 +22,13 @@
           <el-tag v-for="(hint, i) in row.hints" :key="i" size="small" type="info" style="margin-right: 4px;">
             {{ hint }}
           </el-tag>
-          <span v-if="!row.hints || row.hints.length === 0" style="color: #c0c4cc;">无</span>
+          <span v-if="!row.hints || row.hints.length === 0" class="text-tertiary">无</span>
         </template>
       </el-table-column>
       <el-table-column prop="category" label="分类" width="80">
         <template #default="{ row }">
           <el-tag v-if="row.category" size="small">{{ row.category }}</el-tag>
-          <span v-else style="color: #c0c4cc;">-</span>
+          <span v-else class="text-tertiary">-</span>
         </template>
       </el-table-column>
       <el-table-column prop="difficulty" label="难度" width="70">
@@ -85,7 +85,7 @@
 
     <!-- 批量导入对话框 -->
     <el-dialog v-model="batchDialogVisible" title="批量导入词库" width="560px" destroy-on-close append-to-body>
-      <p style="color: #909399; font-size: 13px; margin-bottom: 12px;">
+      <p class="batch-hint">
         请输入JSON格式数据，示例：[{"answer":"北京","hints":["中国首都","北方城市"],"category":"城市","difficulty":"easy"}]
       </p>
       <el-input v-model="batchData" type="textarea" :rows="10" placeholder="粘贴JSON数据..." />
@@ -268,6 +268,7 @@ onMounted(() => {
   align-items: center;
   font-weight: bold;
   font-size: 14px;
+  color: var(--color-text-primary);
 }
 
 .header-actions {
@@ -292,5 +293,19 @@ onMounted(() => {
 
 .hint-item .el-input {
   flex: 1;
+}
+
+.text-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+.batch-hint {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+:deep(.el-table) {
+  --el-table-row-hover-bg-color: var(--color-bg-tertiary);
 }
 </style>

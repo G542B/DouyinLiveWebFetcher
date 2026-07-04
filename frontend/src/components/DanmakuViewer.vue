@@ -10,44 +10,47 @@
       </div>
     </template>
     
-    <div 
-      class="messages-container" 
+    <div
+      class="messages-container"
       ref="messagesContainer"
       @scroll="handleScroll"
     >
-      <div 
+      <div
         class="messages-phantom"
         :style="{ height: totalHeight + 'px' }"
       >
-        <div 
+        <div
           class="messages-content"
           :style="{ transform: `translateY(${offset}px)` }"
         >
-          <div
-            v-for="msg in visibleMessages"
-            :key="msg._uid || msg.timestamp"
-            class="message-item"
-            :class="getMessageClass(msg)"
-            :style="{ height: itemHeight + 'px' }"
-          >
-            <div class="message-header">
-              <span class="message-type">{{ getMessageTypeName(msg.message_type) }}</span>
-              <span class="message-time">{{ formatTime(msg.timestamp) }}</span>
-            </div>
-            <div class="message-content">
-              <div v-if="msg.data.user_name" class="user-name">
-                {{ msg.data.user_name }}
+          <transition-group name="msg-slide" tag="div">
+            <div
+              v-for="msg in visibleMessages"
+              :key="msg._uid || msg.timestamp"
+              class="message-item"
+              :class="getMessageClass(msg)"
+              :style="{ height: itemHeight + 'px' }"
+            >
+              <div class="message-header">
+                <span class="message-type">{{ getMessageTypeName(msg.message_type) }}</span>
+                <span class="message-time">{{ formatTime(msg.timestamp) }}</span>
               </div>
-              <div class="content-text">
-                {{ getMessageText(msg) }}
+              <div class="message-content">
+                <div v-if="msg.data.user_name" class="user-name">
+                  {{ msg.data.user_name }}
+                </div>
+                <div class="content-text">
+                  {{ getMessageText(msg) }}
+                </div>
               </div>
             </div>
-          </div>
+          </transition-group>
         </div>
       </div>
-      
+
       <div v-if="messages.length === 0" class="empty-state">
-        等待弹幕消息...
+        <div class="empty-icon">💬</div>
+        <p>等待弹幕消息...</p>
       </div>
     </div>
   </el-card>
@@ -241,8 +244,9 @@ watch(() => props.messages.length, () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 .header-right {
@@ -252,8 +256,9 @@ watch(() => props.messages.length, () => {
 }
 
 .message-count {
-  font-size: 14px;
-  color: #909399;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
 }
 
 .messages-container {
@@ -277,40 +282,46 @@ watch(() => props.messages.length, () => {
   top: 0;
 }
 
+/* ===== 消息卡片 ===== */
 .message-item {
   box-sizing: border-box;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-md);
   margin-bottom: 8px;
-  border-left: 4px solid #dcdfe6;
+  border-left: 3px solid var(--color-border);
   overflow: hidden;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.message-item:hover {
+  background: var(--color-bg-tertiary);
 }
 
 .message-item.type-chat {
-  border-left-color: #409eff;
+  border-left-color: var(--color-brand);
 }
 
 .message-item.type-gift {
-  border-left-color: #e6a23c;
-  background: linear-gradient(90deg, #fdf6ec 0%, white 100%);
+  border-left-color: var(--color-warning);
+  background: linear-gradient(90deg, #fff9f0 0%, var(--color-bg-primary) 100%);
 }
 
 .message-item.type-like {
-  border-left-color: #f56c6c;
+  border-left-color: var(--color-danger);
 }
 
 .message-item.type-member {
-  border-left-color: #67c23a;
+  border-left-color: var(--color-success);
 }
 
 .message-item.type-social {
-  border-left-color: #909399;
+  border-left-color: var(--color-info);
 }
 
 .message-item.type-stats {
-  border-left-color: #e6a23c;
-  background: linear-gradient(90deg, #faf3e0 0%, white 100%);
+  border-left-color: var(--color-warning);
+  background: linear-gradient(90deg, #fff9f0 0%, var(--color-bg-primary) 100%);
 }
 
 .message-item.type-room {
@@ -328,16 +339,18 @@ watch(() => props.messages.length, () => {
 }
 
 .message-type {
-  font-size: 12px;
+  font-size: 11px;
   padding: 2px 8px;
-  border-radius: 10px;
-  background: #f5f7fa;
-  color: #909399;
+  border-radius: 20px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  font-weight: 600;
 }
 
 .message-time {
-  font-size: 12px;
-  color: #c0c4cc;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
 }
 
 .message-content {
@@ -345,24 +358,56 @@ watch(() => props.messages.length, () => {
 }
 
 .user-name {
-  font-weight: bold;
-  color: #409eff;
+  font-weight: 700;
+  color: var(--color-brand);
   margin-bottom: 4px;
+  font-size: 13px;
 }
 
 .content-text {
-  color: #303133;
+  color: var(--color-text-primary);
   word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  font-size: 13px;
 }
 
+/* ===== 空状态 ===== */
 .empty-state {
   text-align: center;
-  color: #909399;
-  padding: 40px;
+  color: var(--color-text-tertiary);
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+/* ===== 消息入场动画 ===== */
+.msg-slide-enter-active {
+  transition: all 0.3s ease-out;
+}
+.msg-slide-leave-active {
+  transition: all 0.2s ease-in;
+}
+.msg-slide-enter-from {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+.msg-slide-leave-to {
+  opacity: 0;
+  transform: translateX(16px);
+}
+.msg-slide-move {
+  transition: transform 0.3s ease;
 }
 </style>

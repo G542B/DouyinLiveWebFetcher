@@ -54,6 +54,7 @@
     </TransitionGroup>
 
     <div v-if="guesses.length === 0" class="empty-guesses">
+      <div class="empty-icon">💬</div>
       等待观众猜词...
     </div>
   </div>
@@ -90,10 +91,10 @@ const difficultyLabel = computed(() => {
 })
 
 const getScoreColor = (score) => {
-  if (score >= 90) return '#67c23a'
-  if (score >= 70) return '#e6a23c'
-  if (score >= 50) return '#f56c6c'
-  return '#909399'
+  if (score >= 90) return '#34c759'
+  if (score >= 70) return '#ff9500'
+  if (score >= 50) return '#ff3b30'
+  return '#8e8e93'
 }
 
 const rowClass = (item) => {
@@ -146,9 +147,9 @@ watch(() => props.guesses.length, () => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 0; /* 允许 flex 子项收缩，防止内容撑出弹窗产生滚动条 */
+  min-height: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #fff;
+  background: var(--color-bg-primary);
 }
 
 /* 答案遮罩 */
@@ -158,31 +159,31 @@ watch(() => props.guesses.length, () => {
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, #fef9e7 0%, #fdf0d5 100%);
-  border-bottom: 2px dashed #f0dca0;
+  background: linear-gradient(135deg, #fffdf0 0%, #fff8e0 100%);
+  border-bottom: 2px dashed var(--color-border);
 }
 
 .answer-masked-text {
   font-size: 24px;
   font-weight: 800;
   letter-spacing: 8px;
-  color: #5d4037;
+  color: var(--color-text-primary);
 }
 
 .answer-label {
   font-size: 12px;
-  color: #8d6e63;
-  background: #f0dca0;
+  color: var(--color-text-secondary);
+  background: var(--color-brand-light);
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
 }
 
 /* 顶部提示区域 */
 .guess-header {
   padding: 12px 16px;
-  background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%);
-  border-bottom: 2px solid #d0e2ff;
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .header-tags {
@@ -219,17 +220,17 @@ watch(() => props.guesses.length, () => {
 .hint-label {
   font-size: 13px;
   font-weight: 600;
-  color: #667eea;
+  color: var(--color-brand);
   flex-shrink: 0;
 }
 
 .hint-item {
   font-size: 13px;
   font-weight: 500;
-  color: #303133;
-  background: #fff;
-  border: 1px solid #d0e2ff;
-  border-radius: 6px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-brand-light);
+  border-radius: var(--radius-sm);
   padding: 3px 10px;
   line-height: 1.5;
 }
@@ -237,21 +238,20 @@ watch(() => props.guesses.length, () => {
 /* 列表表头 */
 .guess-list-header {
   display: grid;
-  /* 排名 / 用户名 / 猜词 / 关联度 / 时间：minmax 控制最小/最大，fr 分配剩余 */
   grid-template-columns:
-    minmax(32px, 0.4fr)   /* 排名：硬性窄列 */
-    minmax(120px, 2.5fr)  /* 用户名：弹性扩展，占据主要宽度 */
-    minmax(80px, 1fr)     /* 猜词：弹性扩展 */
-    minmax(70px, 0.9fr)   /* 关联度 */
-    minmax(70px, 0.8fr);  /* 时间 */
+    minmax(32px, 0.4fr)
+    minmax(120px, 2.5fr)
+    minmax(80px, 1fr)
+    minmax(70px, 0.9fr)
+    minmax(70px, 0.8fr);
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: #faf8f0;
-  border-bottom: 1px solid #eee4d0;
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-light);
   font-size: 13px;
   font-weight: 600;
-  color: #8d6e63;
+  color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 
@@ -325,7 +325,6 @@ watch(() => props.guesses.length, () => {
 /* 列表行 */
 .guess-item {
   display: grid;
-  /* 与表头列定义完全一致，保证对齐 */
   grid-template-columns:
     minmax(32px, 0.4fr)
     minmax(120px, 2.5fr)
@@ -337,22 +336,22 @@ watch(() => props.guesses.length, () => {
   padding: 9px 16px;
   font-size: 14px;
   line-height: 1.6;
-  border-bottom: 1px solid #f5f2ec;
-  transition: all 0.25s ease;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: all var(--transition-fast);
   position: relative;
 }
 
 .guess-item:hover {
-  background: #fdfcf8;
+  background: var(--color-bg-tertiary);
 }
 
 .guess-item.correct-row {
-  background: linear-gradient(90deg, #f0f9eb 0%, #ffffff 100%) !important;
+  background: linear-gradient(90deg, #f0fbf4 0%, var(--color-bg-primary) 100%) !important;
   animation: correct-flash 0.6s ease;
 }
 
 .guess-item.high-score-row {
-  background: linear-gradient(90deg, #fdf6ec 0%, #ffffff 100%) !important;
+  background: linear-gradient(90deg, #fff9f0 0%, var(--color-bg-primary) 100%) !important;
 }
 
 @keyframes correct-flash {
@@ -373,26 +372,26 @@ watch(() => props.guesses.length, () => {
   font-weight: 800;
   flex-shrink: 0;
   margin-right: 8px;
-  background: #f0f0f0;
-  color: #999;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-tertiary);
   justify-self: center;  /* grid 单元格内水平居中，与表头 # 对齐 */
 }
 
 .rank-gold-badge {
-  background: linear-gradient(135deg, #ffd700 0%, #ffec8b 100%);
+  background: linear-gradient(135deg, var(--medal-gold, #ffd700) 0%, var(--medal-gold-light, #ffec8b) 100%);
   color: #8b6914;
   box-shadow: 0 2px 6px rgba(255, 215, 0, 0.35);
   animation: medal-bounce 2s ease-in-out infinite;
 }
 
 .rank-silver-badge {
-  background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
-  color: #666;
+  background: linear-gradient(135deg, var(--medal-silver, #c0c0c0) 0%, var(--medal-silver-light, #e8e8e8) 100%);
+  color: var(--color-text-secondary);
   box-shadow: 0 2px 4px rgba(192, 192, 192, 0.3);
 }
 
 .rank-bronze-badge {
-  background: linear-gradient(135deg, #cd7f32 0%, #e8a861 100%);
+  background: linear-gradient(135deg, var(--medal-bronze, #cd7f32) 0%, var(--medal-bronze-light, #e8a861) 100%);
   color: #6b4423;
   box-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
 }
@@ -430,27 +429,27 @@ watch(() => props.guesses.length, () => {
 
 .guess-user {
   font-weight: 500;
-  color: #303133;
-  min-width: 0;            /* 关键：允许 grid 子项收缩到 0 */
-  max-width: 240px;        /* 防止超长用户名撑爆列 */
+  color: var(--color-text-primary);
+  min-width: 0;
+  max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  word-break: break-word;  /* 中文/混合文本友好换行 */
+  word-break: break-word;
   overflow-wrap: anywhere;
   line-height: 1.3;
 }
 
 .guess-user.top-guess {
-  color: #e6a23c;
+  color: var(--color-warning);
   font-weight: 700;
 }
 
 .guess-content {
-  color: #303133;
-  min-width: 0;            /* 关键 */
+  color: var(--color-text-primary);
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -476,7 +475,7 @@ watch(() => props.guesses.length, () => {
 .guess-time {
   text-align: right;
   font-size: 12px;
-  color: #b0a898;
+  color: var(--color-text-tertiary);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   min-width: 0;
@@ -486,13 +485,19 @@ watch(() => props.guesses.length, () => {
 
 .empty-guesses {
   text-align: center;
-  color: #c0b8a8;
-  padding: 40px;
+  color: var(--color-text-tertiary);
+  padding: 48px 20px;
   font-size: 14px;
 }
 
-/* 响应式：中屏（500-700px）— 时间列缩短，用户名列获更多份额 */
-@media (max-width: 700px) {
+.empty-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+/* 响应式：中屏 — 时间列缩短，用户名列获更多份额 */
+@media (max-width: 768px) {
   .guess-list-header,
   .guess-item {
     grid-template-columns:
@@ -509,8 +514,8 @@ watch(() => props.guesses.length, () => {
   .guess-time { font-size: 11px; }
 }
 
-/* 响应式：窄屏（<500px）— 隐藏时间列，4 列布局 */
-@media (max-width: 500px) {
+/* 响应式：窄屏 — 隐藏时间列，4 列布局 */
+@media (max-width: 480px) {
   .guess-list-header,
   .guess-item {
     grid-template-columns:

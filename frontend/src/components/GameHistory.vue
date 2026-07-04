@@ -28,7 +28,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <p v-else style="color: #909399;">暂无猜词记录</p>
+            <p v-else class="empty-record">暂无猜词记录</p>
           </div>
         </template>
       </el-table-column>
@@ -36,8 +36,8 @@
       <el-table-column prop="answer" label="答案" min-width="80" />
       <el-table-column prop="winner" label="赢家" min-width="80">
         <template #default="{ row }">
-          <span v-if="row.winner" style="color: #67c23a; font-weight: bold;">{{ row.winner }}</span>
-          <span v-else style="color: #909399;">无人猜中</span>
+          <span v-if="row.winner" class="winner-text">{{ row.winner }}</span>
+          <span v-else class="no-winner-text">无人猜中</span>
         </template>
       </el-table-column>
       <el-table-column prop="total_guesses" label="猜词数" width="70" />
@@ -122,15 +122,37 @@ onMounted(() => {
   align-items: center;
   font-weight: bold;
   font-size: 14px;
+  color: var(--color-text-primary);
 }
 
 .expand-content {
   padding: 12px 20px;
 }
 
+.empty-record {
+  color: var(--color-text-tertiary);
+}
+
+.winner-text {
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+.no-winner-text {
+  color: var(--color-text-tertiary);
+}
+
 .pagination-bar {
   margin-top: 12px;
   display: flex;
   justify-content: center;
+}
+
+:deep(.el-table) {
+  --el-table-row-hover-bg-color: var(--color-bg-tertiary);
+}
+
+:deep(.el-table__row:hover) {
+  transition: background var(--transition-fast);
 }
 </style>

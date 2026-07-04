@@ -84,10 +84,10 @@ const getRankClass = (rank) => {
 }
 
 const compositeStyle = (score) => {
-  if (score >= 80) return { color: '#67c23a', fontWeight: 'bold' }
-  if (score >= 60) return { color: '#e6a23c' }
-  if (score >= 40) return { color: '#f56c6c' }
-  return { color: '#909399' }
+  if (score >= 80) return { color: '#34c759', fontWeight: 'bold' }
+  if (score >= 60) return { color: '#ff9500' }
+  if (score >= 40) return { color: '#ff3b30' }
+  return { color: '#8e8e93' }
 }
 
 const formatScore = (score) => {
@@ -110,8 +110,8 @@ const formatScore = (score) => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 14px;
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  border-bottom: 2px solid #81c784;
+  background: var(--color-bg-primary);
+  border-bottom: 2px solid var(--color-brand-light);
 }
 
 .ranking-header-left {
@@ -123,7 +123,7 @@ const formatScore = (score) => {
 .ranking-title {
   font-weight: 800;
   font-size: 14px;
-  color: #2e7d32;
+  color: var(--color-text-primary);
 }
 
 .rule-icon {
@@ -133,8 +133,8 @@ const formatScore = (score) => {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: rgba(46, 125, 50, 0.2);
-  color: #2e7d32;
+  background: var(--color-brand-light);
+  color: var(--color-brand);
   font-size: 11px;
   font-weight: 700;
   cursor: help;
@@ -142,10 +142,10 @@ const formatScore = (score) => {
 
 .ranking-count {
   font-size: 12px;
-  color: #558b2f;
-  background: rgba(129, 199, 132, 0.3);
+  color: var(--color-brand);
+  background: var(--color-brand-light);
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-weight: 600;
 }
 
@@ -160,15 +160,15 @@ const formatScore = (score) => {
   display: flex;
   flex-direction: column;
   padding: 8px 12px;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid #f5f5f0;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--color-border-light);
   font-size: 13px;
   line-height: 1.6;
   cursor: pointer;
 }
 
 .ranking-item:hover {
-  background: #f1f8e9;
+  background: var(--color-bg-tertiary);
 }
 
 .ranking-main {
@@ -188,15 +188,15 @@ const formatScore = (score) => {
   font-size: 12px;
   font-weight: 800;
   flex-shrink: 0;
-  background: #f0f0f0;
-  color: #999;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-tertiary);
 }
 
 /* 用户名 */
 .rank-user {
   flex: 1;
   font-size: 13px;
-  color: #303133;
+  color: var(--color-text-primary);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -217,8 +217,8 @@ const formatScore = (score) => {
 /* 次数徽章 */
 .rank-times-badge {
   font-size: 11px;
-  color: #999;
-  background: #f0f0f0;
+  color: var(--color-text-tertiary);
+  background: var(--color-bg-tertiary);
   padding: 2px 8px;
   border-radius: 10px;
   font-weight: 700;
@@ -228,8 +228,8 @@ const formatScore = (score) => {
 
 .rank-times-badge.has-correct {
   color: #fff;
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
-  box-shadow: 0 1px 3px rgba(76, 175, 80, 0.25);
+  background: linear-gradient(135deg, #ffd700, #ffec8b);
+  box-shadow: 0 1px 3px rgba(255, 215, 0, 0.25);
 }
 
 /* 详情展开区 */
@@ -250,11 +250,11 @@ const formatScore = (score) => {
 }
 
 .detail-label {
-  color: #909399;
+  color: var(--color-text-tertiary);
 }
 
 .detail-value {
-  color: #606266;
+  color: var(--color-text-secondary);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -272,7 +272,7 @@ const formatScore = (score) => {
 
 /* ===== 前三名特殊样式 ===== */
 .rank-gold {
-  background: linear-gradient(90deg, #fffde7 0%, #fffef5 100%);
+  background: linear-gradient(90deg, #fffdf0 0%, var(--color-bg-primary) 100%);
   border-left: 3px solid #ffd700;
 }
 .rank-gold .rank-number-badge {
@@ -285,7 +285,7 @@ const formatScore = (score) => {
 }
 
 .rank-silver {
-  background: linear-gradient(90deg, #fafafa 0%, #ffffff 100%);
+  background: linear-gradient(90deg, #fafafa 0%, var(--color-bg-primary) 100%);
   border-left: 3px solid #c0c0c0;
 }
 .rank-silver .rank-number-badge {
@@ -297,7 +297,7 @@ const formatScore = (score) => {
 }
 
 .rank-bronze {
-  background: linear-gradient(90deg, #fff8f0 0%, #fffaf5 100%);
+  background: linear-gradient(90deg, #fff8f0 0%, var(--color-bg-primary) 100%);
   border-left: 3px solid #cd7f32;
 }
 .rank-bronze .rank-number-badge {
@@ -310,7 +310,7 @@ const formatScore = (score) => {
 
 .empty-ranking {
   text-align: center;
-  color: #c0b8a8;
+  color: var(--color-text-tertiary);
   padding: 40px 16px;
   font-size: 13px;
 }

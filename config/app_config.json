@@ -11,7 +11,7 @@
       "case_sensitive": false
     },
     "regex_filter": {
-      "enabled": false,
+      "enabled": true,
       "patterns": []
     },
     "user_level_filter": {

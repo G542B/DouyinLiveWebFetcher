@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item label="每轮时间(秒)">
         <el-input-number v-model="config.round_time_limit" :min="30" :max="14400" :step="60" />
-        <span style="margin-left: 8px; color: #909399; font-size: 12px;">
+        <span class="form-hint">
           {{ formatTimeHint(config.round_time_limit) }}
         </span>
       </el-form-item>
@@ -24,8 +24,8 @@
           <el-option label="编辑距离" value="edit_distance" />
           <el-option label="拼音匹配" value="pinyin" />
         </el-select>
-        <span style="margin-left: 8px; color: #909399; font-size: 12px;">
-          Embedding 模式自动下载本地模型（约 95MB）
+        <span class="form-hint">
+          Embedding 模型自动下载本地模型（约 95MB）
         </span>
       </el-form-item>
 
@@ -70,7 +70,7 @@
             </span>
             <span
               v-if="(similarityPerf.avg_ms ?? 0) > 100"
-              style="color: #e6a23c; margin-left: 8px;"
+              class="perf-warn-inline"
             >
               超过 100ms 目标
             </span>
@@ -79,7 +79,7 @@
             v-if="embeddingStatus.error_message"
             label="错误信息"
           >
-            <span style="color: #f56c6c;">{{ embeddingStatus.error_message }}</span>
+            <span class="perf-error">{{ embeddingStatus.error_message }}</span>
           </el-descriptions-item>
         </el-descriptions>
       </el-card>
@@ -242,6 +242,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--color-text-primary);
 }
 
 .embedding-status-card {
@@ -249,18 +250,41 @@ onUnmounted(() => {
   width: calc(100% - 100px);
 }
 
+.form-hint {
+  margin-left: 8px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
 .perf-good {
-  color: #67c23a;
+  color: var(--color-success);
   font-weight: bold;
 }
 
 .perf-ok {
-  color: #409eff;
+  color: var(--color-brand);
   font-weight: bold;
 }
 
 .perf-warn {
-  color: #e6a23c;
+  color: var(--color-warning);
   font-weight: bold;
+}
+
+.perf-warn-inline {
+  color: var(--color-warning);
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.perf-error {
+  color: var(--color-danger);
+}
+
+@media (max-width: 768px) {
+  .embedding-status-card {
+    margin: 8px 0;
+    width: 100%;
+  }
 }
 </style>

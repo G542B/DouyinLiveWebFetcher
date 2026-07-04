@@ -125,7 +125,9 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 .monitor-content {
@@ -139,30 +141,36 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  background: #f5f7fa;
-  border-radius: 6px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.stat-item:hover {
+  background: var(--color-bg-tertiary);
 }
 
 .stat-label {
-  color: #606266;
-  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
 }
 
 .stat-value {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 14px;
-  color: #303133;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-value.good {
-  color: #67c23a;
+  color: var(--color-success);
 }
 
 .stat-value.warning {
-  color: #e6a23c;
+  color: var(--color-warning);
 }
 
 .stat-value.bad {
-  color: #f56c6c;
+  color: var(--color-danger);
 }
 </style>

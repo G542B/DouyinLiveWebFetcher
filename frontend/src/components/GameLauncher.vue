@@ -18,8 +18,8 @@
         @click="openGame(game)"
       >
         <!-- 卡片头部：图标 + 状态标签 -->
-        <div class="card-header" :style="{ background: game.gradient }">
-          <span class="card-icon">{{ game.icon }}</span>
+        <div class="card-header" :style="{ background: game.gradient, borderBottomColor: game.accent }">
+          <span class="card-icon" :style="{ background: game.accent }">{{ game.icon }}</span>
           <el-tag
             v-if="game.status === 'new'"
             size="small"
@@ -74,7 +74,8 @@ const availableGames = ref([
     name: '猜词挑战',
     icon: '🎯',
     description: '观众通过弹幕发送文字猜词，智能算法评估相似度，快来比比谁猜得最准！',
-    gradient: 'linear-gradient(135deg, #f5a623 0%, #f7b733 40%, #fcdbb6 100%)',
+    gradient: 'linear-gradient(135deg, var(--color-brand-light) 0%, var(--color-bg-primary) 100%)',
+    accent: 'var(--color-brand)',
     status: 'hot',
   },
   {
@@ -82,7 +83,8 @@ const availableGames = ref([
     name: '更多模式',
     icon: '🎮',
     description: '更多精彩游戏模式即将上线，敬请期待...',
-    gradient: 'linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%)',
+    gradient: 'linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-primary) 100%)',
+    accent: 'var(--color-info)',
     status: 'coming_soon',
   }
 ])
@@ -122,26 +124,34 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background: linear-gradient(180deg, #f0f2f5 0%, #e8ecf1 100%);
+  background: var(--color-bg-secondary);
 }
 
-/* ===== 横幅 ===== */
+/* ===== 横幅：白色 + 品牌色底线 ===== */
 .launcher-banner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 36px 40px;
-  color: white;
+  background: var(--color-bg-primary);
+  padding: 32px 40px;
+  color: var(--color-text-primary);
   flex-shrink: 0;
+  border-bottom: 3px solid var(--color-brand);
+  animation: banner-fade-in 0.4s ease-out;
+}
+
+@keyframes banner-fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .banner-content h2 {
-  font-size: 28px;
-  margin: 0 0 8px 0;
-  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  color: var(--color-text-primary);
 }
 
 .banner-sub {
-  font-size: 15px;
-  opacity: 0.85;
+  font-size: 14px;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -157,20 +167,34 @@ onUnmounted(() => {
 
 /* ===== 单张卡片 ===== */
 .game-card {
-  background: #fff;
-  border-radius: 16px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--color-border-light);
+  animation: card-enter 0.4s ease-out backwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.05s; }
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.2s; }
+.game-card:nth-child(5) { animation-delay: 0.25s; }
+.game-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .game-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-brand-light);
 }
 
 .game-card:active {
@@ -184,7 +208,8 @@ onUnmounted(() => {
 
 .game-card-disabled:hover {
   transform: none;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-border-light);
 }
 
 /* 卡片头部 */
@@ -195,11 +220,19 @@ onUnmounted(() => {
   justify-content: center;
   position: relative;
   flex-shrink: 0;
+  border-bottom: 3px solid var(--color-brand);
 }
 
 .card-icon {
-  font-size: 48px;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 32px;
+  color: #fff;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
 .status-tag {
@@ -208,18 +241,19 @@ onUnmounted(() => {
   right: 12px;
   font-weight: 700 !important;
   border: none !important;
+  border-radius: 20px !important;
 }
 
 .status-new {
-  background: #67c23a !important;
+  background: var(--color-success) !important;
 }
 
 .status-hot {
-  background: #e6a23c !important;
+  background: var(--color-warning) !important;
 }
 
 .status-soon {
-  background: #909399 !important;
+  background: var(--color-info) !important;
 }
 
 /* 卡片体 */
@@ -229,15 +263,15 @@ onUnmounted(() => {
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   margin: 0 0 8px 0;
-  color: #303133;
+  color: var(--color-text-primary);
 }
 
 .card-desc {
   font-size: 13px;
-  color: #909399;
+  color: var(--color-text-secondary);
   line-height: 1.6;
   margin: 0;
   display: -webkit-box;
@@ -258,12 +292,20 @@ onUnmounted(() => {
   letter-spacing: 0.5px;
 }
 
-@media (max-width: 640px) {
+/* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+  .game-grid {
+    padding: 20px 24px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
   .launcher-banner {
     padding: 24px 20px;
   }
   .banner-content h2 {
-    font-size: 22px;
+    font-size: 20px;
   }
   .game-grid {
     grid-template-columns: 1fr;

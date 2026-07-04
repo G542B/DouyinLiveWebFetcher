@@ -554,8 +554,9 @@ onUnmounted(() => {
 }
 
 .card-header {
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 .filter-actions {

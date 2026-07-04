@@ -463,21 +463,23 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border-radius: 8px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  min-height: 0; /* 确保 flex 子项可以收缩，防止内容溢出弹窗 */
+  min-height: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  animation: app-fade-in 0.4s ease-out;
 }
 
-/* ===== 顶部标题栏：金橙渐变 ===== */
+/* ===== 顶部标题栏：白色 + 品牌色底线 ===== */
 .game-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #f5a623 0%, #f7b733 40%, #fcdbb6 100%);
-  color: #5d4037;
+  padding: 14px 24px;
+  background: var(--color-bg-primary);
+  border-bottom: 2px solid var(--color-brand);
+  color: var(--color-text-primary);
   flex-shrink: 0;
 }
 
@@ -488,20 +490,19 @@ onUnmounted(() => {
 }
 
 .game-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: 2px;
-  color: #5d4037;
-  text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+  color: var(--color-text-primary);
 }
 
 .auto-peek-hint {
-  font-size: 12px;
-  color: #8d6e63;
-  background: rgba(255,255,255,0.5);
+  font-size: 11px;
+  color: var(--color-brand);
+  background: var(--color-brand-light);
   padding: 2px 10px;
-  border-radius: 10px;
-  font-weight: 500;
+  border-radius: 20px;
+  font-weight: 600;
 }
 
 .header-right {
@@ -510,39 +511,41 @@ onUnmounted(() => {
 }
 
 .countdown-tag {
-  background: rgba(93, 64, 55, 0.85) !important;
+  background: var(--color-bg-tertiary) !important;
   border-color: transparent !important;
+  color: var(--color-text-primary) !important;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
   min-width: 60px;
   text-align: center;
+  border-radius: var(--radius-sm) !important;
 }
 
 .countdown-warning {
   animation: countdown-pulse 0.8s ease-in-out infinite alternate;
-  background: #e74c3c !important;
+  background: var(--color-danger) !important;
   color: #fff !important;
 }
 
 @keyframes countdown-pulse {
-  from { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
-  to { transform: scale(1.05); box-shadow: 0 0 8px 2px rgba(231, 76, 60, 0.2); }
+  from { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.3); }
+  to { transform: scale(1.05); box-shadow: 0 0 8px 2px rgba(255, 59, 48, 0.15); }
 }
 
 /* ===== 信息提示栏 ===== */
 .info-bar {
   display: flex;
   align-items: center;
-  padding: 8px 20px;
-  background: linear-gradient(90deg, #fffbf0 0%, #fff8e6 100%);
-  border-bottom: 1px solid #f0e0c0;
+  padding: 8px 24px;
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-light);
   flex-shrink: 0;
 }
 
 .participate-hint {
   font-size: 13px;
-  color: #8d6e63;
+  color: var(--color-text-secondary);
   font-weight: 500;
 }
 
@@ -551,9 +554,9 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  background: #faf8f0;
-  border-bottom: 1px solid #eee4d0;
+  padding: 10px 24px;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border-light);
   flex-shrink: 0;
 }
 
@@ -566,18 +569,18 @@ onUnmounted(() => {
 .category-label {
   font-size: 14px;
   font-weight: 600;
-  color: #5d4037;
+  color: var(--color-text-primary);
 }
 
 .category-tag {
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
-  border-radius: 6px !important;
+  border-radius: var(--radius-sm) !important;
 }
 
 .word-length-hint {
   font-size: 13px;
-  color: #8d6e63;
+  color: var(--color-text-secondary);
 }
 
 .category-actions {
@@ -597,7 +600,7 @@ onUnmounted(() => {
 .content-left {
   flex: 1;
   overflow: hidden;
-  border-right: 1px solid #e8e0d0;
+  border-right: 1px solid var(--color-border-light);
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -610,14 +613,14 @@ onUnmounted(() => {
   max-width: 320px;
   flex-shrink: 0;
   overflow: hidden;
-  min-height: 0; /* flex 纵向排列时允许收缩 */
-  background: #fdfcf8;
+  min-height: 0;
+  background: var(--color-bg-primary);
 }
 
 /* ===== 底部区域 ===== */
 .game-footer {
   flex-shrink: 0;
-  border-top: 2px solid #e8e0d0;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .footer-controls {
@@ -625,14 +628,14 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  background: #f5f2ec;
+  background: var(--color-bg-secondary);
   gap: 6px;
   flex-wrap: wrap;
 }
 
 .round-info {
   font-size: 13px;
-  color: #8d6e63;
+  color: var(--color-text-secondary);
   margin-right: 4px;
   font-weight: 600;
 }
@@ -643,14 +646,14 @@ onUnmounted(() => {
   align-items: flex-start;
   gap: 12px;
   padding: 8px 20px;
-  background: linear-gradient(90deg, #f0ebe0 0%, #faf5ef 100%);
-  border-top: 1px solid #e8e0d0;
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .qa-label {
   font-size: 13px;
   font-weight: 700;
-  color: #5d4037;
+  color: var(--color-text-primary);
   white-space: nowrap;
   flex-shrink: 0;
   line-height: 24px;
@@ -674,7 +677,7 @@ onUnmounted(() => {
 }
 
 .qa-user {
-  color: #8d6e63;
+  color: var(--color-text-secondary);
   font-weight: 600;
   flex-shrink: 0;
   max-width: 80px;
@@ -684,7 +687,7 @@ onUnmounted(() => {
 }
 
 .qa-question {
-  color: #5d4037;
+  color: var(--color-text-primary);
   flex-shrink: 0;
 }
 
@@ -694,7 +697,7 @@ onUnmounted(() => {
 
 .qa-hint {
   font-size: 12px;
-  color: #9e8b77;
+  color: var(--color-text-tertiary);
   line-height: 24px;
 }
 
@@ -711,7 +714,6 @@ onUnmounted(() => {
 }
 
 .duplicate-notice {
-  /* absolute 脱离正常流，固定在 notice-stack 槽位内 */
   position: absolute;
   top: 0;
   left: 0;
@@ -722,19 +724,19 @@ onUnmounted(() => {
   gap: 8px;
   padding: 8px 16px;
   margin: 0;
-  background: linear-gradient(90deg, #fff7e6 0%, #fff2d9 100%);
-  border-bottom: 1px solid #f5d99a;
-  border-left: 3px solid #e6a23c;
+  background: linear-gradient(90deg, #fff9f0 0%, #fff5e6 100%);
+  border-bottom: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-warning);
   font-size: 13px;
   line-height: 1.5;
-  color: #5d4037;
-  box-shadow: 0 1px 3px rgba(230, 163, 60, 0.15);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
   box-sizing: border-box;
 }
 
 .notice-icon {
   font-size: 16px;
-  color: #e6a23c;
+  color: var(--color-warning);
   flex-shrink: 0;
   line-height: 1;
 }
@@ -749,17 +751,17 @@ onUnmounted(() => {
 
 .notice-user,
 .notice-prev {
-  color: #b88218;
+  color: var(--color-brand);
   font-weight: 700;
 }
 
 .notice-mid {
-  color: #8d6e63;
+  color: var(--color-text-secondary);
   margin: 0 2px;
 }
 
 .notice-content {
-  color: #d35400;
+  color: var(--color-warning);
   font-weight: 600;
 }
 
@@ -788,13 +790,13 @@ onUnmounted(() => {
 }
 
 /* 响应式布局：小窗口时主内容区改为纵向排列 */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .game-content {
     flex-direction: column;
   }
   .content-left {
     border-right: none;
-    border-bottom: 1px solid #e8e0d0;
+    border-bottom: 1px solid var(--color-border-light);
     min-height: 200px;
   }
   .content-right {

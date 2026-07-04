@@ -163,8 +163,9 @@ onMounted(() => {
 }
 
 .card-header {
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
 }
 
 .add-room-form {
@@ -178,11 +179,16 @@ onMounted(() => {
 
 .room-item {
   padding: 12px;
-  background: white;
-  border-radius: 8px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-md);
   margin-bottom: 8px;
-  border: 1px solid #e4e7ed;
+  border: 1px solid var(--color-border-light);
   position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+.room-item:hover {
+  border-color: var(--color-brand-light);
 }
 
 .room-info {
@@ -190,14 +196,15 @@ onMounted(() => {
 }
 
 .room-name {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 14px;
   margin-bottom: 4px;
+  color: var(--color-text-primary);
 }
 
 .room-id {
   font-size: 12px;
-  color: #909399;
+  color: var(--color-text-tertiary);
 }
 
 .room-actions {
@@ -213,7 +220,8 @@ onMounted(() => {
 
 .empty-state {
   text-align: center;
-  color: #909399;
-  padding: 20px;
+  color: var(--color-text-tertiary);
+  padding: 30px 20px;
+  font-size: 13px;
 }
 </style>

@@ -70,7 +70,7 @@ const particleStyle = (i) => {
   const distance = 80 + Math.random() * 60
   const x = Math.cos(angle * Math.PI / 180) * distance
   const y = Math.sin(angle * Math.PI / 180) * distance
-  const colors = ['#f56c6c', '#e6a23c', '#67c23a', '#409eff', '#b37feb', '#ff85c0']
+  const colors = ['#4f6df5', '#34c759', '#ff9500', '#ff3b30', '#b37feb', '#ff85c0']
   const color = colors[i % colors.length]
   return {
     '--tx': x + 'px',
@@ -115,13 +115,13 @@ onUnmounted(() => {
 
 .congrats-popup {
   position: relative;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border-radius: 20px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
   padding: 40px 48px;
   min-width: 400px;
   max-width: 500px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(64, 158, 255, 0.2);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(79, 109, 245, 0.15);
   overflow: hidden;
 }
 
@@ -131,15 +131,15 @@ onUnmounted(() => {
   right: 16px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-tertiary);
   font-size: 24px;
   cursor: pointer;
   line-height: 1;
-  transition: color 0.2s;
+  transition: color var(--transition-fast);
 }
 
 .close-btn:hover {
-  color: #fff;
+  color: var(--color-danger);
 }
 
 .congrats-content {
@@ -154,32 +154,32 @@ onUnmounted(() => {
 }
 
 .congrats-title {
-  color: #ffd700;
+  color: var(--color-brand);
   font-size: 28px;
   margin: 0 0 16px;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  font-weight: 800;
 }
 
 .congrats-message {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-primary);
   font-size: 16px;
   margin: 0 0 8px;
 }
 
 .winner-name {
-  color: #67c23a;
+  color: var(--color-warning);
   font-weight: bold;
   font-size: 18px;
 }
 
 .congrats-answer {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-text-secondary);
   font-size: 14px;
   margin: 0 0 12px;
 }
 
 .answer-text {
-  color: #ffd700;
+  color: var(--color-brand);
   font-size: 22px;
   font-weight: bold;
 }
@@ -189,13 +189,13 @@ onUnmounted(() => {
 }
 
 .guess-info {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-tertiary);
   font-size: 13px;
 }
 
 .countdown-bar {
   height: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-bg-tertiary);
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 8px;
@@ -203,13 +203,13 @@ onUnmounted(() => {
 
 .countdown-progress {
   height: 100%;
-  background: linear-gradient(90deg, #409eff, #67c23a);
+  background: linear-gradient(90deg, var(--color-brand), var(--color-success));
   border-radius: 2px;
   transition: width 1s linear;
 }
 
 .countdown-text {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--color-text-tertiary);
   font-size: 12px;
   margin: 0;
 }

@@ -163,17 +163,17 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-bg-secondary);
   padding: 20px;
 }
 
 .license-container {
-  background: white;
-  border-radius: 16px;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
   padding: 48px;
   max-width: 560px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .license-header {
@@ -182,19 +182,19 @@ onMounted(() => {
 }
 
 .logo-icon {
-  color: #667eea;
+  color: var(--color-brand);
   margin-bottom: 16px;
 }
 
 .license-header h1 {
   font-size: 28px;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--color-text-primary);
   margin: 0 0 8px 0;
 }
 
 .subtitle {
-  color: #909399;
+  color: var(--color-text-secondary);
   font-size: 14px;
   margin: 0;
 }
@@ -213,12 +213,12 @@ onMounted(() => {
   gap: 8px;
   font-size: 15px;
   font-weight: 600;
-  color: #303133;
+  color: var(--color-text-primary);
   margin-bottom: 12px;
 }
 
 .section-title .el-icon {
-  color: #667eea;
+  color: var(--color-brand);
   font-size: 18px;
 }
 
@@ -231,19 +231,19 @@ onMounted(() => {
 .machine-code {
   flex: 1;
   padding: 12px 16px;
-  background: #f5f7fa;
-  border: 1px solid #e4e7ed;
-  border-radius: 8px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-family: 'Courier New', monospace;
   font-size: 13px;
-  color: #303133;
+  color: var(--color-text-primary);
   word-break: break-all;
   user-select: all;
 }
 
 .hint {
   font-size: 12px;
-  color: #909399;
+  color: var(--color-text-secondary);
   margin: 8px 0 0 0;
 }
 
@@ -266,12 +266,12 @@ onMounted(() => {
   text-align: center;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid #ebeef5;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .footer-info p {
   font-size: 12px;
-  color: #c0c4cc;
+  color: var(--color-text-tertiary);
   margin: 0;
 }
 </style>
